@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import axios from "axios";
 
@@ -7,18 +7,19 @@ import Avatar from "../../assets/avatar.svg";
 import Arrow from "../../assets/arrow.svg";
 import Trash from "../../assets/trash.svg";
 
+import H1 from '../../components/Title'
+import ContainerItens from '../../components/ContainerItens'
+
 import {
   Container,
-  H1,
   Image,
-  ContainerItens,
   Button,
   User,
 } from "./styles";
 
 function Users() {
   const [users, setUsers] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
 
 useEffect(() => {
 async function fetchUsers(){
@@ -39,13 +40,13 @@ async function deleteUser(userId) {
 }
 
   function goBackPage(){
-    history.push('/');
+    navigate('/');
   }
 
   return (
     <Container>
       <Image alt="logo-imagem" src={Avatar} />
-      <ContainerItens>
+      <ContainerItens isBlur={true}>
         <H1>Usuários!</H1>
 
     <ul>
